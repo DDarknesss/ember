@@ -1,0 +1,95 @@
+<h2>List of products</h2>
+
+<div class="rr-sidebar">
+  
+  <table class="rr-list">
+      <tr>
+          <th>Name</th>
+          <th>Quantity</th>
+          <th>Price</th>
+      </tr>
+      
+    {{#each this.model as |products|}}
+        <tr>
+             <th>{{products.name}}</th>
+             <th>{{products.quantity}}</th>
+             <th>$ {{products.price}}</th>
+             <th>
+                 <button type="button" class="pointer br2
+                    ba b--dark-green bg-green white pa2 ml1
+                    mv1 bg-animate hover-bg-dark-green 
+                    border-box"
+                    onclick={{action "editProduct"}}
+                    >
+                    Edit
+                </button>
+            </th>
+             <th>
+                <button type="button" class="pointer 
+                    br2 ba b--dark-red bg-red white pa2
+                    ml1 mv1 bg-animate hover-bg-dark-red 
+                    border-box"
+                    onclick={{action "deleteProduct"}}
+                    >
+                    Delete
+                </button>
+            </th>
+        </tr>
+    {{/each}}
+        <tr>
+          <th> Summ:</th>
+          <th> 532</th>
+          <th> $ 300</th>
+        </tr>
+    
+    </table>
+</div>
+
+<div>
+
+    {{#if isAddingProduct}}
+       
+      <form class="rr-inline-form" onsubmit={{action "saveProduct"}}>
+        
+        {{input type="text" class="rr-input" value=newProductName placeholder="New product"}}
+        {{input type="text" class="rr-input" value=quantity placeholder="Quantity"}}
+        {{input type="text" class="rr-input" value=price placeholder="Price"}}
+         
+        <button type="submit" class="
+        pointer br2 ba b--dark-black 
+        bg-black white pa2 ml1 mv1 
+        bg-animate hover-black 
+        hover-bg-white border-box" 
+        onclick={{action "saveProduct"}} 
+        disabled={{isAddButtonDisabled}} 
+        >
+            Add Product
+        </button>
+        
+        <span class="rr-cancel-icon" onclick={{action "cancelAddProduct"}}>
+            {{fa-icon "times"}}
+        </span>
+      
+      </form>
+
+    {{else}}
+  
+      <label onclick={{action "addProduct"}}>
+        {{fa-icon "plus"}}
+        <span class="ml1">Add new Product</span>
+      </label>
+    
+    {{/if}}
+
+   {{#link-to 'shops'}}
+    <button class="pointer
+        br2 ba b--dark-black
+        bg-black white pa2 ml1 
+        mv1 bg-animate hover-black 
+        hover-bg-white border-box"
+        >
+        Back
+    </button>
+   {{/link-to}}
+</div>
+

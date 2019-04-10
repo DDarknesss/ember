@@ -1,0 +1,71 @@
+<h2>Shops</h2>
+
+<div class="rr-sidebar">
+  
+  <table class="rr-list">
+    {{#each this.model as |shop|}}
+        <tr>
+             <th>
+                 {{#link-to 'products' shop }}
+                    {{shop.name}}
+                 {{/link-to}}
+            </th>
+             <th>
+                 <button type="button" class="
+                 pointer br2 ba b--dark-green bg-green white pa2 
+                 ml1 mv1 bg-animate 
+                 hover-bg-dark-green border-box"
+                 onclick={{action "editShop"}}
+                 >
+                    Edit
+                 </button>
+            </th>
+             <th>
+                 <button type="button" class="
+                 pointer br2 ba b--dark-red bg-red white pa2 ml1 
+                 mv1 bg-animate hove
+                 r-bg-dark-red border-box"
+                 onclick={{action "deleteShop"}}
+                 >
+                    Delete
+                 </button>
+            </th>
+        </tr>
+    {{/each}}
+    </table>
+</div>
+
+ <div class="rr-new-label">
+    
+    {{#if isAddingShop}}
+       
+      <form class="rr-inline-form" onsubmit={{action "saveShop"}}>
+        {{input type="text" class="rr-input" value=newShopName placeholder="New Shop"}}
+         
+        <button type="submit" class="
+        pointer br2 ba b--dark-black 
+        bg-black white pa2 ml1 mv1 
+        bg-animate hover-black 
+        hover-bg-white border-box" 
+        onclick={{action "saveShop"}} 
+        disabled={{isAddButtonDisabled}} 
+        >
+             Add Shop
+        </button>
+        
+        <span class="rr-cancel-icon" onclick={{action "cancelAddShop"}}>
+          {{fa-icon "times"}}
+        </span>
+      
+      </form>
+
+    {{else}}
+  
+      <label onclick={{action "addShop"}}>
+        {{fa-icon "plus"}}
+        <span class="ml1">Add new Shop</span>
+      </label>
+    
+    {{/if}}
+
+ </div>
